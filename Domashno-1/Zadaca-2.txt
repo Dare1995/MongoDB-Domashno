@@ -1,0 +1,86 @@
+1/2.
+db.Библиотека.insertMany([
+  { Наслов: "To Kill a Mockingbird", автор: "Harper Lee", година: 1960 },
+  { Наслов: "1984", автор: "George Orwell", година: 1949 },
+  { Наслов: "The Lord of the Rings", автор: "J.R.R. Tolkien", година: 1954 },
+  { Наслов: "The Great Gatsby", автор: "F. Scott Fitzgerald", година: 1925 },
+  { Наслов: "A Game of Thrones", автор: "George R.R. Martin", година: 1996 }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6699590d99d9adfa697e5127'),
+    '1': ObjectId('6699590d99d9adfa697e5128'),
+    '2': ObjectId('6699590d99d9adfa697e5129'),
+    '3': ObjectId('6699590d99d9adfa697e512a'),
+    '4': ObjectId('6699590d99d9adfa697e512b')
+  }
+}
+
+3.
+db.Библиотека.find()
+{
+  _id: ObjectId('6699590d99d9adfa697e5127'),
+  'Наслов': 'To Kill a Mockingbird',
+  'автор': 'Harper Lee',
+  'година': 1960
+}
+{
+  _id: ObjectId('6699590d99d9adfa697e5128'),
+  'Наслов': '1984',
+  'автор': 'George Orwell',
+  'година': 1949
+}
+{
+  _id: ObjectId('6699590d99d9adfa697e5129'),
+  'Наслов': 'The Lord of the Rings',
+  'автор': 'J.R.R. Tolkien',
+  'година': 1954
+}
+{
+  _id: ObjectId('6699590d99d9adfa697e512a'),
+  'Наслов': 'The Great Gatsby',
+  'автор': 'F. Scott Fitzgerald',
+  'година': 1925
+}
+{
+  _id: ObjectId('6699590d99d9adfa697e512b'),
+  'Наслов': 'A Game of Thrones',
+  'автор': 'George R.R. Martin',
+  'година': 1996
+}
+
+4.
+db.Библиотека.find({ година: { $lt: 1950 } })
+{
+  _id: ObjectId('6699590d99d9adfa697e5128'),
+  'Наслов': '1984',
+  'автор': 'George Orwell',
+  'година': 1949
+}
+{
+  _id: ObjectId('6699590d99d9adfa697e512a'),
+  'Наслов': 'The Great Gatsby',
+  'автор': 'F. Scott Fitzgerald',
+  'година': 1925
+}
+
+5.
+db.Библиотека.updateOne(
+  { Наслов: "1984" },
+  { $set: { година: 1984 } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+6.
+db.Библиотека.deleteOne({ година: 1984 })
+{
+  acknowledged: true,
+  deletedCount: 1
+}

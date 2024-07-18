@@ -1,0 +1,71 @@
+2/3.
+db.users.insertMany([
+  { name: "Petre Petkovski", age: 30, email: "petre@example.com" },
+  { name: "Jana Smiljkovska", age: 25, email: "jana@example.com" },
+  { name: "Dario Stefanovski", age: 35, email: "dario@example.com" }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6699545c99d9adfa697e5123'),
+    '1': ObjectId('6699545c99d9adfa697e5124'),
+    '2': ObjectId('6699545c99d9adfa697e5125')
+  }
+}
+
+4.
+db.users.find()
+{
+  _id: ObjectId('6699545c99d9adfa697e5123'),
+  name: 'Petre Petkovski',
+  age: 30,
+  email: 'petre@example.com'
+}
+{
+  _id: ObjectId('6699545c99d9adfa697e5124'),
+  name: 'Jana Smiljkovska',
+  age: 25,
+  email: 'jana@example.com'
+}
+{
+  _id: ObjectId('6699545c99d9adfa697e5125'),
+  name: 'Dario Stefanovski',
+  age: 35,
+  email: 'dario@example.com'
+}
+
+5.
+db.users.updateOne(
+  { name: "Petre Petkovski" },
+  { $set: { age: 35 } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+6.
+db.users.deleteOne({ name: "Dario Stefanovski" })
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+7.
+db.accounts.insertOne(
+  { account: 123 }
+)
+{
+  acknowledged: true,
+  insertedId: ObjectId('6699564099d9adfa697e5126')
+}
+
+8.
+db.accounts.drop()
+true
+
+
+
